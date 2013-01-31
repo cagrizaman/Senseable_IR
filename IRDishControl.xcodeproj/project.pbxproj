@@ -1,0 +1,217 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC7B990B16BB29B10095EF58 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC7B990A16BB29B10095EF58 /* main.cpp */; };
+		CC7B990D16BB29B10095EF58 /* IRDishControl.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CC7B990C16BB29B10095EF58 /* IRDishControl.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CC7B990416BB29B10095EF58 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				CC7B990D16BB29B10095EF58 /* IRDishControl.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CC7B990616BB29B10095EF58 /* IRDishControl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IRDishControl; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC7B990A16BB29B10095EF58 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CC7B990C16BB29B10095EF58 /* IRDishControl.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = IRDishControl.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC7B990316BB29B10095EF58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC7B98FB16BB29B10095EF58 = {
+			isa = PBXGroup;
+			children = (
+				CC7B990916BB29B10095EF58 /* IRDishControl */,
+				CC7B990716BB29B10095EF58 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC7B990716BB29B10095EF58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B990616BB29B10095EF58 /* IRDishControl */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC7B990916BB29B10095EF58 /* IRDishControl */ = {
+			isa = PBXGroup;
+			children = (
+				CC7B990A16BB29B10095EF58 /* main.cpp */,
+				CC7B990C16BB29B10095EF58 /* IRDishControl.1 */,
+			);
+			path = IRDishControl;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC7B990516BB29B10095EF58 /* IRDishControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC7B991016BB29B10095EF58 /* Build configuration list for PBXNativeTarget "IRDishControl" */;
+			buildPhases = (
+				CC7B990216BB29B10095EF58 /* Sources */,
+				CC7B990316BB29B10095EF58 /* Frameworks */,
+				CC7B990416BB29B10095EF58 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IRDishControl;
+			productName = IRDishControl;
+			productReference = CC7B990616BB29B10095EF58 /* IRDishControl */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC7B98FD16BB29B10095EF58 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Matthias;
+			};
+			buildConfigurationList = CC7B990016BB29B10095EF58 /* Build configuration list for PBXProject "IRDishControl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CC7B98FB16BB29B10095EF58;
+			productRefGroup = CC7B990716BB29B10095EF58 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC7B990516BB29B10095EF58 /* IRDishControl */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC7B990216BB29B10095EF58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC7B990B16BB29B10095EF58 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CC7B990E16BB29B10095EF58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CC7B990F16BB29B10095EF58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CC7B991116BB29B10095EF58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CC7B991216BB29B10095EF58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC7B990016BB29B10095EF58 /* Build configuration list for PBXProject "IRDishControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC7B990E16BB29B10095EF58 /* Debug */,
+				CC7B990F16BB29B10095EF58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC7B991016BB29B10095EF58 /* Build configuration list for PBXNativeTarget "IRDishControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC7B991116BB29B10095EF58 /* Debug */,
+				CC7B991216BB29B10095EF58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CC7B98FD16BB29B10095EF58 /* Project object */;
+}
