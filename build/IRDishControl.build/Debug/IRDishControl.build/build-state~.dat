@@ -1,0 +1,331 @@
+TIRDishControl
+v7
+r0
+t384391585.534490
+cCheck dependencies
+cCompileC build/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/main.o "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp" normal x86_64 c++ com.apple.compilers.llvmgcc42
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004A769DAB00000000000000EE
+t1249287595
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/CoreServices.framework/Headers/CoreServices.h
+c000000004CC3FFFE0000000000000401
+t1287913470
+s1025
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/errno.h
+c000000004A5C14A600000000000003EB
+t1247548582
+s1003
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/fcntl.h
+c000000004A5C14A600000000000003EA
+t1247548582
+s1002
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004A5C14A70000000000004174
+t1247548583
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/string.h
+c000000004A5C14A70000000000001731
+t1247548583
+s5937
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/sys/time.h
+c000000004A73D6550000000000001E17
+t1249105493
+s7703
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/termios.h
+c000000004A5C14A600000000000004D4
+t1247548582
+s1236
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/time.h
+c000000004A5C14A7000000000000178E
+t1247548583
+s6030
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/unistd.h
+c000000004A5C14A7000000000000563E
+t1247548583
+s22078
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_calib3d.2.4.3.dylib
+c000000005139180800000000000A2DC0
+t1362696200
+s667072
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_contrib.2.4.3.dylib
+c000000005139180900000000001053AC
+t1362696201
+s1069996
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_core.2.4.3.dylib
+c00000000513918070000000000238350
+t1362696199
+s2327376
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_features2d.2.4.3.dylib
+c000000005139180800000000000B6518
+t1362696200
+s746776
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_flann.2.4.3.dylib
+c0000000051391807000000000007DED8
+t1362696199
+s515800
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_gpu.2.4.3.dylib
+c000000005139180900000000000270B8
+t1362696201
+s159928
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_highgui.2.4.3.dylib
+c000000005139180800000000002318C8
+t1362696200
+s2300104
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_imgproc.2.4.3.dylib
+c0000000051391807000000000021591C
+t1362696199
+s2185500
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_legacy.2.4.3.dylib
+c00000000513918090000000000112734
+t1362696201
+s1124148
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_ml.2.4.3.dylib
+c00000000513918080000000000079830
+t1362696200
+s497712
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_nonfree.2.4.3.dylib
+c00000000513918090000000000019E38
+t1362696201
+s106040
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_objdetect.2.4.3.dylib
+c00000000513918090000000000085E90
+t1362696201
+s548496
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_photo.2.4.3.dylib
+c0000000051391809000000000001E4C4
+t1362696201
+s124100
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_stitching.2.4.3.dylib
+c00000000513918090000000000087B1C
+t1362696201
+s555804
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_ts.2.4.3.dylib
+c000000005139180900000000000B2130
+t1362696201
+s729392
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_video.2.4.3.dylib
+c0000000051391808000000000003DB40
+t1362696200
+s252736
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/../../../../../../usr/lib/libopencv_videostab.2.4.3.dylib
+c00000000513918090000000000035680
+t1362696201
+s218752
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp
+c0000000051391B910000000000003154
+t1362697105
+s12628
+i<iostream>
+i<iomanip>
+i<opencv2/opencv.hpp>
+i"opencv2/objdetect/objdetect.hpp"
+i"opencv2/highgui/highgui.hpp"
+i"opencv2/imgproc/imgproc.hpp"
+i<stdio.h>
+i<string.h>
+i<unistd.h>
+i<fcntl.h>
+i<errno.h>
+i<termios.h>
+i<time.h>
+i<iostream>
+i<CoreServices/CoreServices.h>
+i<sys/time.h>
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/Debug/IRDishControl
+t2
+s0
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/IRDishControl.LinkFileList
+c0000000051392220000000000000008B
+t1362698784
+s139
+
+N/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/usr/local/lib/libcvblob.dylib
+c00000000000000000000000000000000
+t2
+s0
+
+N/usr/local/lib/libopencv_calib3d.2.4.3.dylib
+c000000005139180800000000000A2DC0
+t1362696200
+s667072
+
+N/usr/local/lib/libopencv_contrib.2.4.3.dylib
+c000000005139180900000000001053AC
+t1362696201
+s1069996
+
+N/usr/local/lib/libopencv_core.2.4.3.dylib
+c00000000513918070000000000238350
+t1362696199
+s2327376
+
+N/usr/local/lib/libopencv_features2d.2.4.3.dylib
+c000000005139180800000000000B6518
+t1362696200
+s746776
+
+N/usr/local/lib/libopencv_flann.2.4.3.dylib
+c0000000051391807000000000007DED8
+t1362696199
+s515800
+
+N/usr/local/lib/libopencv_gpu.2.4.3.dylib
+c000000005139180900000000000270B8
+t1362696201
+s159928
+
+N/usr/local/lib/libopencv_highgui.2.4.3.dylib
+c000000005139180800000000002318C8
+t1362696200
+s2300104
+
+N/usr/local/lib/libopencv_imgproc.2.4.3.dylib
+c0000000051391807000000000021591C
+t1362696199
+s2185500
+
+N/usr/local/lib/libopencv_legacy.2.4.3.dylib
+c00000000513918090000000000112734
+t1362696201
+s1124148
+
+N/usr/local/lib/libopencv_ml.2.4.3.dylib
+c00000000513918080000000000079830
+t1362696200
+s497712
+
+N/usr/local/lib/libopencv_nonfree.2.4.3.dylib
+c00000000513918090000000000019E38
+t1362696201
+s106040
+
+N/usr/local/lib/libopencv_objdetect.2.4.3.dylib
+c00000000513918090000000000085E90
+t1362696201
+s548496
+
+N/usr/local/lib/libopencv_photo.2.4.3.dylib
+c0000000051391809000000000001E4C4
+t1362696201
+s124100
+
+N/usr/local/lib/libopencv_stitching.2.4.3.dylib
+c00000000513918090000000000087B1C
+t1362696201
+s555804
+
+N/usr/local/lib/libopencv_ts.2.4.3.dylib
+c000000005139180900000000000B2130
+t1362696201
+s729392
+
+N/usr/local/lib/libopencv_video.2.4.3.dylib
+c0000000051391808000000000003DB40
+t1362696200
+s252736
+
+N/usr/local/lib/libopencv_videostab.2.4.3.dylib
+c00000000513918090000000000035680
+t1362696201
+s218752
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies384391584#384391584#0(155"[WARN]Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.1(22@148"Mac OS X deployment target '10.8' for architecture 'x86_64' and variant 'normal' is greater than the maximum value '10.6' for the Mac OS X 10.6 SDK.384391584#18446744073709551615#0#0(1@0"0(0#1#0"17203963136#0"0#
+
+CCompileC build/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/main.o "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp" normal x86_64 c++ com.apple.compilers.llvmgcc42
+s384391584.531801
+e384391585.534425
+r0
+xCompileC
+xbuild/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/main.o
+x/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp
+xnormal
+xx86_64
+xc++
+xcom.apple.compilers.llvmgcc42
+occ1plus: warning: -Wuninitialized is not supported without -O
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:10:30: error: opencv2/opencv.hpp: No such file or directory
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:12:43: error: opencv2/objdetect/objdetect.hpp: No such file or directory
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:13:39: error: opencv2/highgui/highgui.hpp: No such file or directory
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:14:39: error: opencv2/imgproc/imgproc.hpp: No such file or directory
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:28: error: 'cv' is not a namespace-name
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:28: error: expected namespace-name before ';' token
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:55: error: 'VideoCapture' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:56: error: 'Mat' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:59: error: 'CvPoint' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:60: error: 'CvPoint' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:63: error: 'String' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:64: error: 'CascadeClassifier' does not name a type
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void onMouse(int, int, int, int, void*)':
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:169: error: 'iAPt1' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:171: error: 'iAPt2' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:176: error: 'iAPt2' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:180: error: 'CV_EVENT_LBUTTONDOWN' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:182: error: 'iAPt1' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:182: error: 'iAPt2' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'bool setInitiationArea(std::string)':
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:203: error: 'cap' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:203: error: 'frame' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'iAPt1' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'iAPt2' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'Scalar' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'rectangle' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:208: error: 'waitKey' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:212: error: 'imshow' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void updateDish()':
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:219: warning: implicit conversion shortens 64-bit value into a 32-bit value
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'bool calibrateDish(std::string)':
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:310: error: 'cap' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:310: error: 'frame' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'Point2d' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'Scalar' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'circle' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:328: error: 'imshow' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:330: error: 'cvWaitKey' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void sortInitAreaPoints()':
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:372: error: 'iAPt1' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:374: error: 'iAPt2' was not declared in this scope
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: At global scope:
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:388: error: variable or field 'cascadeDetect' declared void
+o/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:388: error: 'Mat' was not declared in this scope
+lSLF07#2@88"Compile /Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384391584#384391585#0(5887"cc1plus: warning: -Wuninitialized is not supported without -O/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:10:30: error: opencv2/opencv.hpp: No such file or directory/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:12:43: error: opencv2/objdetect/objdetect.hpp: No such file or directory/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:13:39: error: opencv2/highgui/highgui.hpp: No such file or directory/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:14:39: error: opencv2/imgproc/imgproc.hpp: No such file or directory/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:28: error: 'cv' is not a namespace-name/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:28: error: expected namespace-name before ';' token/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:55: error: 'VideoCapture' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:56: error: 'Mat' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:59: error: 'CvPoint' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:60: error: 'CvPoint' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:63: error: 'String' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:64: error: 'CascadeClassifier' does not name a type/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void onMouse(int, int, int, int, void*)':/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:169: error: 'iAPt1' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:171: error: 'iAPt2' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:176: error: 'iAPt2' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:180: error: 'CV_EVENT_LBUTTONDOWN' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:182: error: 'iAPt1' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:182: error: 'iAPt2' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'bool setInitiationArea(std::string)':/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:203: error: 'cap' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:203: error: 'frame' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'iAPt1' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'iAPt2' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'Scalar' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:205: error: 'rectangle' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:208: error: 'waitKey' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:212: error: 'imshow' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void updateDish()':/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:219: warning: implicit conversion shortens 64-bit value into a 32-bit value/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'bool calibrateDish(std::string)':/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:310: error: 'cap' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:310: error: 'frame' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'Point2d' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'Scalar' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:315: error: 'circle' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:328: error: 'imshow' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:330: error: 'cvWaitKey' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: In function 'void sortInitAreaPoints()':/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:372: error: 'iAPt1' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:374: error: 'iAPt2' was not declared in this scope/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp: At global scope:/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:388: error: variable or field 'cascadeDetect' declared void/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp:388: error: 'Mat' was not declared in this scope40(22@43"-Wuninitialized is not supported without -O384391584#0#62#0(6@0"384391584#0#0#0#0#0"0(4@45"Opencv2/opencv.hpp: No such file or directory384391585#62#141#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#10#0#10#0#28"*: No such file or directory0(4@58"Opencv2/objdetect/objdetect.hpp: No such file or directory384391585#203#154#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#12#0#12#0#28"*: No such file or directory0(4@54"Opencv2/highgui/highgui.hpp: No such file or directory384391585#357#150#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#13#0#13#0#28"*: No such file or directory0(4@54"Opencv2/imgproc/imgproc.hpp: No such file or directory384391585#507#150#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#14#0#14#0#28"*: No such file or directory0(4@28"'cv' is not a namespace-name384391585#657#121#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#28#0#28#0#0"0(4@40"Expected namespace-name before ';' token384391585#778#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#28#0#28#0#19"expected * before *0(4@35"'VideoCapture' does not name a type384391585#911#128#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#55#0#55#0#24"'*' does not name a type0(4@26"'Mat' does not name a type384391585#1039#119#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#56#0#56#0#24"'*' does not name a type0(4@30"'CvPoint' does not name a type384391585#1158#123#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#59#0#59#0#24"'*' does not name a type0(4@30"'CvPoint' does not name a type384391585#1281#123#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#60#0#60#0#24"'*' does not name a type0(4@29"'String' does not name a type384391585#1404#122#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#63#0#63#0#24"'*' does not name a type0(4@40"'CascadeClassifier' does not name a type384391585#1526#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#64#0#64#0#24"'*' does not name a type0(4@38"'iAPt1' was not declared in this scope384391585#1796#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#169#0#169#0#34"'*' was not declared in this scope0(4@38"'iAPt2' was not declared in this scope384391585#1928#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#171#0#171#0#34"'*' was not declared in this scope0(4@38"'iAPt2' was not declared in this scope384391585#2060#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#176#0#176#0#34"'*' was not declared in this scope0(4@53"'CV_EVENT_LBUTTONDOWN' was not declared in this scope384391585#2192#147#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#180#0#180#0#34"'*' was not declared in this scope0(4@38"'iAPt1' was not declared in this scope384391585#2339#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#182#0#182#0#34"'*' was not declared in this scope0(4@38"'iAPt2' was not declared in this scope384391585#2471#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#182#0#182#0#34"'*' was not declared in this scope0(4@36"'cap' was not declared in this scope384391585#2736#130#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#203#0#203#0#34"'*' was not declared in this scope0(4@38"'frame' was not declared in this scope384391585#2866#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#203#0#203#0#34"'*' was not declared in this scope0(4@38"'iAPt1' was not declared in this scope384391585#2998#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#205#0#205#0#34"'*' was not declared in this scope0(4@38"'iAPt2' was not declared in this scope384391585#3130#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#205#0#205#0#34"'*' was not declared in this scope0(4@39"'Scalar' was not declared in this scope384391585#3262#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#205#0#205#0#34"'*' was not declared in this scope0(4@42"'rectangle' was not declared in this scope384391585#3395#136#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#205#0#205#0#34"'*' was not declared in this scope0(4@40"'waitKey' was not declared in this scope384391585#3531#134#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#208#0#208#0#34"'*' was not declared in this scope0(4@39"'imshow' was not declared in this scope384391585#3665#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#212#0#212#0#34"'*' was not declared in this scope0(22@61"Implicit conversion shortens 64-bit value into a 32-bit value384391585#3913#157#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#219#0#219#0#61"implicit conversion shortens 64-bit value into a 32-bit value0(4@36"'cap' was not declared in this scope384391585#4199#130#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#310#0#310#0#34"'*' was not declared in this scope0(4@38"'frame' was not declared in this scope384391585#4329#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#310#0#310#0#34"'*' was not declared in this scope0(4@40"'Point2d' was not declared in this scope384391585#4461#134#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#315#0#315#0#34"'*' was not declared in this scope0(4@39"'Scalar' was not declared in this scope384391585#4595#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#315#0#315#0#34"'*' was not declared in this scope0(4@39"'circle' was not declared in this scope384391585#4728#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#315#0#315#0#34"'*' was not declared in this scope0(4@39"'imshow' was not declared in this scope384391585#4861#133#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#328#0#328#0#34"'*' was not declared in this scope0(4@42"'cvWaitKey' was not declared in this scope384391585#4994#136#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#330#0#330#0#34"'*' was not declared in this scope0(4@38"'iAPt1' was not declared in this scope384391585#5253#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#372#0#372#0#34"'*' was not declared in this scope0(4@38"'iAPt2' was not declared in this scope384391585#5385#132#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#374#0#374#0#34"'*' was not declared in this scope0(23@16"At global scope:384391585#5517#99#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#0#0#0#0#0"0(4@47"Variable or field 'cascadeDetect' declared void384391585#5616#141#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#388#0#388#0#0"0(4@36"'Mat' was not declared in this scope384391585#5757#130#0(6@80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp384389905#388#0#388#0#34"'*' was not declared in this scope0(0#0#80"/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp17205905664#1720"    cd "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy"    setenv LANG en_US.US-ASCII    /Developer/usr/bin/llvm-gcc-4.2 -x c++ -arch x86_64 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -Wuninitialized -Wshorten-64-to-32 -DDEBUG=1 -isysroot /Developer/SDKs/MacOSX10.6.sdk -fvisibility-inlines-hidden -mmacosx-version-min=10.8 -gdwarf-2 -iquote "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/IRDishControl-generated-files.hmap" "-I/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/IRDishControl-own-target-headers.hmap" "-I/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/IRDishControl-all-target-headers.hmap" -iquote "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/IRDishControl-project-headers.hmap" "-F/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/Debug" "-I/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/Debug/include" -I/Developer/SDKs/MacOSX10.6.sdk/usr/include "-I/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/DerivedSources/x86_64" "-I/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/DerivedSources" -c "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/IRDishControl/main.cpp" -o "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/IRDishControl.build/Debug/IRDishControl.build/Objects-normal/x86_64/main.o"1#
+
+CLd "/Users/pinhan/Documents/MIT/IR Project/IRDishControl copy/build/Debug/IRDishControl" normal x86_64
+r0
+
