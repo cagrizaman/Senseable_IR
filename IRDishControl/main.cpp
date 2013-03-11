@@ -438,7 +438,7 @@ void cascadeDetect( Mat frame ) {
                 look2sec=0;
             }
         
-        
+        //This is the change I made
         if(tracking){
             calcAngles(center.x, center.y);
         }
