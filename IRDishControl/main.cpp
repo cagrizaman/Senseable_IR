@@ -41,7 +41,7 @@ int EHor, EVer;
 int FHor, FVer;
 
 //current angles
-int PHor=0, PVer=0;
+int PHor=30, PVer=0;
 int PHor2, PVer2;
 
 
@@ -57,6 +57,9 @@ char buf[256];
 int rc,n;
 bool handshake=false;
 
+// IR turn on / turn off
+
+int bulbState =0;
 //initiate tracking
 bool initTrack = false;
 bool tracking=false;
@@ -64,7 +67,7 @@ int look2sec=0;
 int look10sec=0;
 int timer =0;
 //setup variables for blobs and capture
-VideoCapture cap(1);
+VideoCapture cap(0);
 Mat frame;
 
 //for init area
@@ -266,6 +269,21 @@ void updateDish() {
     serialport_read_until(fd, buf, 'F');
     //printf("read: %s\n",buf);
     
+    serialport_read_until(fd, buf, 'H');
+    printf("read: %s\n",buf);
+    
+    
+    serialport_writebyte(fd, 202);
+    usleep( 10 * 1000 );
+    
+    //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
+    
+    serialport_writebyte(fd, bulbState);
+    usleep( 10 * 1000 );
+    
+    serialport_read_until(fd, buf, 'H');
+    //printf("read: %s\n",buf);
+    
 }
 
 //function to map value from source-range to new range
@@ -446,7 +464,7 @@ void cascadeDetect( Mat frame ) {
                 look2sec++;
                 cout<<"look2sec"<<look2sec<<"\n";
                 if(look2sec>50){
-                    
+                    bulbState=1;
                     initTrack=true;
                     tracking=true;
                     calcAngles(center.x, center.y);
@@ -455,19 +473,21 @@ void cascadeDetect( Mat frame ) {
             }
         //This is the change I made
             else{
+                bulbState=0;
                 initTrack=false;
                 look2sec=0;
             }
         
         if(tracking){
-            if(look10sec>500){
+            if(look10sec>100){
+                bulbState=0;
                 tracking=false;
                 initTrack=false;
                 look10sec=0;
             }
             else{
                 cout<<"look10sec"<<look10sec<<"\n";
-
+                bulbState=1;
                 look10sec++;
                 calcAngles(center.x, center.y);
                 ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
@@ -481,7 +501,7 @@ void cascadeDetect( Mat frame ) {
         timer++;
         cout<<"empty frame"<<timer<<"\n";
         if(timer>100){
-            
+            bulbState=0;
             tracking=false;
             initTrack=false;
             look2sec=0;
@@ -525,7 +545,7 @@ int main(){
     windowName = "detection";
     
     //set serial port
-    fd = serialport_init("/dev/tty.usbmodem241421", baudrate);
+    fd = serialport_init("/dev/tty.usbmodem621", baudrate);
     
    
 
