@@ -453,11 +453,14 @@ void cascadeDetect( Mat frame ) {
                    
                 }
             }
-                  
         //This is the change I made
+            else{
+                initTrack=false;
+                look2sec=0;
+            }
+        
         if(tracking){
             if(look10sec>500){
-                
                 tracking=false;
                 initTrack=false;
                 look10sec=0;
@@ -543,5 +546,6 @@ int main(){
         updateDish();
     }
 }
+
 
 
