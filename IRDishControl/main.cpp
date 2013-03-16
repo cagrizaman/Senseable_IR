@@ -41,8 +41,13 @@ int EHor, EVer;
 int FHor, FVer;
 
 //current angles
-int PHor=45, PVer=45;
+int PHor=0, PVer=0;
 int PHor2, PVer2;
+
+
+//mapping variables
+float angleRange=(M_PI/180)*30;
+
 
 //variables for serial
 int fd = 0;
@@ -56,7 +61,8 @@ bool handshake=false;
 bool initTrack = false;
 bool tracking=false;
 int look2sec=0;
-
+int look10sec=0;
+int timer =0;
 //setup variables for blobs and capture
 VideoCapture cap(1);
 Mat frame;
@@ -67,6 +73,8 @@ CvPoint iAPt2;
 
 //detection
 String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
+//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_profileface.xml";
+
 CascadeClassifier upperBody_cascade;
 
 
@@ -226,18 +234,13 @@ void updateDish() {
     
     n = strtol("45", NULL,10); //convert string to number
 	if(!handshake){
-    cout<<"reading";
     serialport_read_until(fd, buf, 'R');
-    //printf("read: %s\n",buf);
-    cout<<"writing";
     serialport_writebyte(fd, 'R');
     usleep( 10 * 1000 );
         handshake=true;
     }
-    cout<<"reading";
     serialport_read_until(fd, buf, 'G');
-    //printf("read: %s\n",buf);
-    cout<<"writing";
+    printf("read: %s\n",buf);
     serialport_writebyte(fd, 200);
     usleep( 10 * 1000 );
     
@@ -245,11 +248,11 @@ void updateDish() {
     usleep( 10 * 1000 );
     
     serialport_read_until(fd, buf, 'G');
-    //printf("read: %s\n",buf);
+    printf("read: %s\n",buf);
     
     
     serialport_read_until(fd, buf, 'F');
-    //printf("read: %s\n",buf);
+    printf("read: %s\n",buf);
     
     
     serialport_writebyte(fd, 201);
@@ -273,10 +276,24 @@ float mapToRange(int input, int srcRangeMin, int srcRangeMax, int dstRangeMin, i
 //function to determine angles to rotate dish to. determined through pixel-coordinates and calibration-Values
 void calcAngles(int PX, int PY) {
     
-    PVer = int((float)PY * ( (float)DVer - (float)AVer ) / (float)capHeight);
-    PHor = int( (float)AHor - ((float)PX * (float)(AHor - BHor) / (float)capWidth) );
+    //PVer = int((float)PY * ( (float)DVer - (float)AVer ) / (float)capHeight);
+    //PHor = int( (float)AHor - ((float)PX * (float)(AHor - BHor) / (float)capWidth) );
+    
+    //if(PVer>13){
+      //  PVer=PVer-13;
+    //}
     
     
+    
+
+    float distance =(1/tan(angleRange))*(capWidth/2);
+    
+    float verticalRange= atan((capHeight/2)/distance);
+    float PHorN=atan((PX-(capWidth/2))/distance);
+    float PVerN=atan((PY-(capHeight/2))/distance);
+    PVer= PVerN*(180/M_PI)+(verticalRange*180/M_PI);
+    PHor= (angleRange*2)-PHorN*(180/M_PI)+(angleRange*180/M_PI);
+        
     cout<<PVer<<"\n";
     cout<<PHor<<"\n";
     /*
@@ -405,7 +422,8 @@ double GetTimeSinceBootInMilliseconds() {
 
 //detects upper bodies and draws rectangles on frame to indicate them, takes in current video frame
 void cascadeDetect( Mat frame ) {
-    
+    //Compare look2sec and look10sec with global timer
+
     std::vector<cv::Rect> upperBodies;
     Mat frame_gray;
     
@@ -415,9 +433,10 @@ void cascadeDetect( Mat frame ) {
     //-- Detect upperBodies
     upperBody_cascade.detectMultiScale( frame_gray, upperBodies, 1.1, 2, 0, cv::Size(80, 80) );
 
+    
     // draw detections
     for( int i = 0; i < upperBodies.size(); i++ ){
-        
+        timer=0;
         cv::Point center( upperBodies[i].x + upperBodies[i].width*0.5, upperBodies[i].y + upperBodies[i].height*0.5 );
         ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 0, 0 ), 2, 8, 0 );
         
@@ -425,24 +444,48 @@ void cascadeDetect( Mat frame ) {
             if(center.x>iAPt1.x&&center.y>iAPt1.y&&center.x<iAPt2.x&&center.y<iAPt2.y &&!initTrack &&!tracking){
         
                 look2sec++;
-                cout<<"stage"<<look2sec;
+                cout<<"look2sec"<<look2sec<<"\n";
                 if(look2sec>50){
+                    
                     initTrack=true;
                     tracking=true;
                     calcAngles(center.x, center.y);
                    
                 }
             }
-            else{
-                initTrack=false;
-                look2sec=0;
-            }
-        
+                  
         //This is the change I made
         if(tracking){
-            calcAngles(center.x, center.y);
+            if(look10sec>500){
+                
+                tracking=false;
+                initTrack=false;
+                look10sec=0;
+            }
+            else{
+                cout<<"look10sec"<<look10sec<<"\n";
+
+                look10sec++;
+                calcAngles(center.x, center.y);
+                ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
+
+            }
         }
         
+    }
+    
+    if(upperBodies.size()==0){
+        timer++;
+        cout<<"empty frame"<<timer<<"\n";
+        if(timer>100){
+            
+            tracking=false;
+            initTrack=false;
+            look2sec=0;
+            look10sec=0;
+        }
+    
+    
     }
 }
 
@@ -479,7 +522,7 @@ int main(){
     windowName = "detection";
     
     //set serial port
-    fd = serialport_init("/dev/tty.usbmodem264421", baudrate);
+    fd = serialport_init("/dev/tty.usbmodem241421", baudrate);
     
    
 
