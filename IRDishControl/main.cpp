@@ -44,7 +44,8 @@ int FHor, FVer;
 int PHor=30, PVer=0;
 int PHor2, PVer2;
 
-
+//previousPositions
+int prevX,prevY;
 //mapping variables
 float angleRange=(M_PI/180)*30;
 
@@ -67,14 +68,17 @@ int look2sec=0;
 int look10sec=0;
 int timer =0;
 //setup variables for blobs and capture
-VideoCapture cap(0);
+VideoCapture cap(1);
 Mat frame;
 
 //for init area
 CvPoint iAPt1;
 CvPoint iAPt2;
 
+
 //detection
+//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
+
 String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_profileface.xml";
 
@@ -468,6 +472,8 @@ void cascadeDetect( Mat frame ) {
                     initTrack=true;
                     tracking=true;
                     calcAngles(center.x, center.y);
+                    prevX=center.x;
+                    prevY=center.y;
                    
                 }
             }
@@ -479,7 +485,7 @@ void cascadeDetect( Mat frame ) {
             }
         
         if(tracking){
-            if(look10sec>100){
+            if(look10sec>200){
                 bulbState=0;
                 tracking=false;
                 initTrack=false;
@@ -489,8 +495,15 @@ void cascadeDetect( Mat frame ) {
                 cout<<"look10sec"<<look10sec<<"\n";
                 bulbState=1;
                 look10sec++;
+                int distance = sqrt((pow((double)center.x-prevX, 2)+pow((double)center.y-prevY,2)));
+                if(distance<50){
+                    prevX=center.x;
+                    prevY=center.y;
+                    cout<<"I am tracking you \n";
                 calcAngles(center.x, center.y);
-                ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
+                    ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
+
+                }
 
             }
         }
@@ -545,7 +558,7 @@ int main(){
     windowName = "detection";
     
     //set serial port
-    fd = serialport_init("/dev/tty.usbmodem621", baudrate);
+    fd = serialport_init("/dev/tty.usbmodem264431", baudrate);
     
    
 
