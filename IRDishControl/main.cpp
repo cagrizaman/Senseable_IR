@@ -68,12 +68,16 @@ int look2sec=0;
 int look10sec=0;
 int timer =0;
 //setup variables for blobs and capture
-VideoCapture cap(1);
+VideoCapture cap(0);
 Mat frame;
+string windowName;
 
 //for init area
 CvPoint iAPt1;
 CvPoint iAPt2;
+
+//functions
+bool mouseMode();
 
 
 //detection
@@ -206,18 +210,7 @@ static void onMouse( int event, int x, int y, int, void* ) {
     } //if left mouse is pressed increment initStatus
 }
 
-//function to convert string to char
-char* stringToChar(string s) {
-	
-	char *a=new char[s.size()+1];
-	a[s.size()]=0;
-	memcpy(a,s.c_str(),s.size());
-	
-	return a;
-	
-}
-
-//draw initiation Area
+//draw initiation Area on video frame
 void drawInitArea(){}
 
 //function to set area where blobs are looked for for further tracking
@@ -231,6 +224,7 @@ bool setInitiationArea(string windowName) {
         char key = waitKey(10);
         switch (key) {
             case 'q': case 'Q': return false;
+            case 'm': case 'M': mouseMode(); return false;
         }
         imshow(windowName, frame);
     } //input of points for rectangular area
@@ -345,6 +339,32 @@ void calcAngles(int PX, int PY) {
      */
     
 }
+
+//function called on mouseEvent during mouseMode
+static void mouseXY( int event, int x, int y, int, void* ) {
+    
+    calcAngles(x, y);
+    
+}
+
+//function to use mouse to point dish
+bool mouseMode(){
+    destroyWindow(windowName);
+    windowName = "mouseMode";
+    namedWindow(windowName, WINDOW_AUTOSIZE);
+    setMouseCallback( windowName, mouseXY, 0 );
+    
+    while (1) {
+        
+        cap>>frame;
+        imshow(windowName, frame);
+        char key = waitKey(10);
+        switch (key) {
+            case 'q': case 'Q': return false;
+        }
+    }
+}
+
 
 //function to load a preset configuration
 void loadSavedConfig() {
@@ -525,15 +545,11 @@ void cascadeDetect( Mat frame ) {
     }
 }
 
-
-
-
 int main(){
     //settings for capture size
     cap.set(CV_CAP_PROP_FRAME_HEIGHT,capHeight);
     cap.set(CV_CAP_PROP_FRAME_WIDTH,capWidth);
     if( !upperBody_cascade.load( upperBodyCascade ) ){ printf("--(!)Error loading\n"); return -1; }
-    string windowName;
     
     //set initiation area
     windowName = "initArea";
