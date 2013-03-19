@@ -1,29 +1,28 @@
 // 'q' for quit
-// 'p' for print config
-// 'n' for next calibration point
-// 'l' for load calibration
 
 //include libraries
 #include <iostream>
 #include <iomanip>
+
 //opencv
 #include <opencv2/opencv.hpp>
+
 //opencv tracking
 #include "opencv2/objdetect/objdetect.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
+
 //for serial
-#include <stdio.h>
-#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <errno.h>
 #include <termios.h>
-#include <time.h>
-#include <iostream>
-//for time
-#include <CoreServices/CoreServices.h>
-#include <sys/time.h>
+
+//unused libraries
+//#include <time.h>
+//#include <iostream>
+//#include <errno.h>
+//#include <stdio.h>
+//#include <string.h>
+//#include "opencv2/imgproc/imgproc.hpp"
 
 using namespace cv;
 using namespace std;
@@ -31,14 +30,6 @@ using namespace std;
 //properties for capture
 #define capWidth 480
 #define capHeight 270
-
-//calibration-values
-int AHor, AVer;
-int BHor, BVer;
-int CHor, CVer;
-int DHor, DVer;
-int EHor, EVer;
-int FHor, FVer;
 
 //current angles
 int PHor=30, PVer=0;
@@ -81,17 +72,25 @@ bool mouseMode();
 
 
 //detection
-//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
 
-String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
+//paths to classifiers
+//Matthias:
+//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_fullbody.xml";
+String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_upperbody.xml";
+//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_profileface.xml";
+
+//Cagri:
+//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
+//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_profileface.xml";
 
 CascadeClassifier upperBody_cascade;
 
-
 //for mouse events
 int initStatus = 0;
 bool settingArea = false;
+
+
 
 //serialFunctions
 int serialport_writebyte( int fd, int b) {
@@ -342,9 +341,7 @@ void calcAngles(int PX, int PY) {
 
 //function called on mouseEvent during mouseMode
 static void mouseXY( int event, int x, int y, int, void* ) {
-    
     calcAngles(x, y);
-    
 }
 
 //function to use mouse to point dish
@@ -363,103 +360,6 @@ bool mouseMode(){
             case 'q': case 'Q': return false;
         }
     }
-}
-
-
-//function to load a preset configuration
-void loadSavedConfig() {
-    AHor = 90; AVer = 0;
-    BHor = 0; BVer = 0;
-    CHor = 0; CVer = 60;
-    DHor = 90; DVer = 60;
-    EHor = 45; EVer = 0;
-    FHor = 45; FVer = 60;
-}
-
-//function to calibrate dish
-bool calibrateDish(string windowName) {
-    
-    char key;
-    int stage = 1;
-    int radius = 30;
-    
-    while (1) {
-        
-        cap >> frame;
-		
-		// draw circle according to calibration Stage
-        switch (stage) {
-            case 1:
-                circle(frame, Point2d(0,0), radius, Scalar(255,255,255), 3); break;
-            case 2:
-                circle(frame, Point2d(capWidth,0), radius, Scalar(255,255,255), 3); break;
-            case 3:
-                circle(frame, Point2d(capWidth,capHeight), radius, Scalar(255,255,255), 3); break;
-            case 4:
-                circle(frame, Point2d(0,capHeight), radius, Scalar(255,255,255), 3); break;
-            case 5:
-                circle(frame, Point2d(capWidth/2,0), radius, Scalar(255,255,255), 3); break;
-            case 6:
-                circle(frame, Point2d(capWidth/2,capHeight), radius, Scalar(255,255,255), 3); break;
-        }
-        
-        imshow(windowName, frame);
-        key = '0';
-        key = cvWaitKey(5);
-        
-        switch (key) {
-            case 'w': case 'W': PVer --; cout << 'W'<<PVer; break;
-                
-            case 's': case 'S': PVer ++; cout << 'S'<<PVer; break;
-                
-            case 'D': case 'd': PHor --; cout << 'D'<<PHor; break;
-                
-            case 'A': case 'a': PHor ++; cout << 'A'<<PHor; break;
-                
-            case 'N': case 'n': cout << 'N' << endl;
-                
-				switch (stage) {
-                    case 1: AHor = PHor; AVer = PVer; break;
-                    case 2: BHor = PHor; BVer = PVer; break;
-                    case 3: CHor = PHor; CVer = PVer; break;
-                    case 4: DHor = PHor; DVer = PVer; break;
-                    case 5: EHor = PHor; EVer = PVer; break;
-                    case 6: FHor = PHor; FVer = PVer; return true;} //save point according to stage
-                //usleep(1000*10);
-                stage++; cout << "Stage: " << stage << endl; break;
-                
-            case 'L': case 'l':
-                loadSavedConfig(); stage = 7;
-                cout << "load config";
-                return true;
-                
-            case 'Q': case 'q': return false;
-        }
-        
-        //qupdateDish();
-    }
-    
-    
-    
-}
-
-//sorts the spanning points of the initArea-rectangle so that iAPt1 is the top left one and iAPt2 is the bottom right one
-void sortInitAreaPoints() {
-	int x1, x2, y1, y2;
-	
-	x1 = iAPt1.x;
-	y1 = iAPt1.y;
-	x2 = iAPt2.x;
-	y2 = iAPt2.y;
-	
-	if (!(x1<x2)) {iAPt1.x = x2; iAPt2.x = x1;}
-	if (!(y1<y2)) {iAPt1.y = y2; iAPt2.y = y1;}
-}
-
-double GetTimeSinceBootInMilliseconds() {
-	struct timeval tm;
-	gettimeofday( &tm, NULL );
-	return (double)tm.tv_sec + (double)tm.tv_usec / 1000000.0;
 }
 
 //detects upper bodies and draws rectangles on frame to indicate them, takes in current video frame
@@ -483,26 +383,26 @@ void cascadeDetect( Mat frame ) {
         ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 0, 0 ), 2, 8, 0 );
         
         
-            if(center.x>iAPt1.x&&center.y>iAPt1.y&&center.x<iAPt2.x&&center.y<iAPt2.y &&!initTrack &&!tracking){
+        if(center.x>iAPt1.x&&center.y>iAPt1.y&&center.x<iAPt2.x&&center.y<iAPt2.y &&!initTrack &&!tracking){
         
-                look2sec++;
-                cout<<"look2sec"<<look2sec<<"\n";
-                if(look2sec>50){
-                    bulbState=1;
-                    initTrack=true;
-                    tracking=true;
-                    calcAngles(center.x, center.y);
-                    prevX=center.x;
-                    prevY=center.y;
+            look2sec++;
+            cout<<"look2sec"<<look2sec<<"\n";
+            if(look2sec>50){
+                bulbState=1;
+                initTrack=true;
+                tracking=true;
+                calcAngles(center.x, center.y);
+                prevX=center.x;
+                prevY=center.y;
                    
-                }
             }
+        }
         //This is the change I made
-            else{
-                bulbState=0;
-                initTrack=false;
-                look2sec=0;
-            }
+        else{
+            bulbState=0;
+            initTrack=false;
+            look2sec=0;
+        }
         
         if(tracking){
             if(look10sec>200){
@@ -520,14 +420,12 @@ void cascadeDetect( Mat frame ) {
                     prevX=center.x;
                     prevY=center.y;
                     cout<<"I am tracking you \n";
-                calcAngles(center.x, center.y);
+                    calcAngles(center.x, center.y);
                     ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
 
                 }
-
             }
         }
-        
     }
     
     if(upperBodies.size()==0){
@@ -561,25 +459,13 @@ int main(){
     }
     destroyWindow(windowName);
     
-    //calibration commented out. not necessary anymore
-/*
-    //calibrate dish
-    windowName = "calibration";
-    namedWindow(windowName, WINDOW_AUTOSIZE);
-    if (!calibrateDish(windowName)) {
-        cout << "Program canceled during dishCalibration" << endl;
-        return -1;
-    }
-    destroyWindow(windowName);
-*/
+
     //detect
     windowName = "detection";
     
     //set serial port
     fd = serialport_init("/dev/tty.usbmodem264431", baudrate);
     
-   
-
     cout<<fd;
     
     while (1) {
