@@ -545,6 +545,8 @@ int main(){
     }
     destroyWindow(windowName);
     
+    //calibration commented out. not necessary anymore
+/*
     //calibrate dish
     windowName = "calibration";
     namedWindow(windowName, WINDOW_AUTOSIZE);
@@ -553,7 +555,7 @@ int main(){
         return -1;
     }
     destroyWindow(windowName);
-    
+*/
     //detect
     windowName = "detection";
     
