@@ -233,12 +233,11 @@ bool setInitiationArea(string windowName) {
 void updateDish() {
     
     n = strtol("45", NULL,10); //convert string to number
-	if(!handshake){
-    serialport_read_until(fd, buf, 'R');
-    serialport_writebyte(fd, 'R');
-    usleep( 10 * 1000 );
-        handshake=true;
-    }
+    
+    serialport_read_until(fd, buf, 'C');
+    printf("read: %s\n",buf);
+
+    
     serialport_read_until(fd, buf, 'G');
     printf("read: %s\n",buf);
     serialport_writebyte(fd, 200);
@@ -341,7 +340,7 @@ void calcAngles(int PX, int PY) {
 
 //function called on mouseEvent during mouseMode
 static void mouseXY( int event, int x, int y, int, void* ) {
-    calcAngles(x, y);
+    calcAngles(x, y);    
 }
 
 //function to use mouse to point dish
@@ -359,6 +358,7 @@ bool mouseMode(){
         switch (key) {
             case 'q': case 'Q': return false;
         }
+        updateDish();
     }
 }
 
@@ -449,6 +449,9 @@ int main(){
     cap.set(CV_CAP_PROP_FRAME_WIDTH,capWidth);
     if( !upperBody_cascade.load( upperBodyCascade ) ){ printf("--(!)Error loading\n"); return -1; }
     
+    //set serial port
+    fd = serialport_init("/dev/tty.usbmodem1411", baudrate);
+    
     //set initiation area
     windowName = "initArea";
     namedWindow(windowName, WINDOW_AUTOSIZE);
@@ -463,8 +466,6 @@ int main(){
     //detect
     windowName = "detection";
     
-    //set serial port
-    fd = serialport_init("/dev/tty.usbmodem264431", baudrate);
     
     cout<<fd;
     
