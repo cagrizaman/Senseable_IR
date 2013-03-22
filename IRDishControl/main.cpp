@@ -29,7 +29,7 @@ using namespace std;
 
 //properties for capture
 #define capWidth 480
-#define capHeight 270
+#define capHeight 360
 
 //current angles
 int PHor=30, PVer=0;
@@ -45,7 +45,7 @@ float angleRange=(M_PI/180)*30;
 int fd = 0;
 char serialport[256];
 int baudrate = B19200;  // default
-char buf[256];
+char buf[8];
 int rc,n;
 bool handshake=false;
 
@@ -59,7 +59,7 @@ int look2sec=0;
 int look10sec=0;
 int timer =0;
 //setup variables for blobs and capture
-VideoCapture cap(0);
+VideoCapture cap(1);
 Mat frame;
 string windowName;
 
@@ -76,11 +76,11 @@ bool mouseMode();
 //paths to classifiers
 //Matthias:
 //String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_fullbody.xml";
-String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_upperbody.xml";
+//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_upperbody.xml";
 //String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_profileface.xml";
 
 //Cagri:
-//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
+String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_profileface.xml";
 
@@ -235,50 +235,56 @@ void updateDish() {
     n = strtol("45", NULL,10); //convert string to number
     
     serialport_read_until(fd, buf, 'C');
-    printf("read: %s\n",buf);
-
+   // printf("read: %s\n",buf);
+    usleep(10*500);
     
     serialport_read_until(fd, buf, 'G');
-    printf("read: %s\n",buf);
+   // printf("read: %s\n",buf);
+    usleep( 10 * 500 );
+
     serialport_writebyte(fd, 200);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500 );
     
     serialport_writebyte(fd, PVer);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500);
     
     serialport_read_until(fd, buf, 'G');
-    printf("read: %s\n",buf);
+   // printf("read: %s\n",buf);
     
-    
+    usleep( 10 * 500);
+
     serialport_read_until(fd, buf, 'F');
-    printf("read: %s\n",buf);
-    
+  //  printf("read: %s\n",buf);
+    usleep( 10 * 500 );
+
     
     serialport_writebyte(fd, 201);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500 );
     
     //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
     
     serialport_writebyte(fd, PHor);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500 );
     
     serialport_read_until(fd, buf, 'F');
     //printf("read: %s\n",buf);
-    
+    usleep( 10 * 500 );
+
     serialport_read_until(fd, buf, 'H');
-    printf("read: %s\n",buf);
-    
+    //printf("read: %s\n",buf);
+    usleep( 10 * 500 );
     
     serialport_writebyte(fd, 202);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500 );
     
     //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
     
     serialport_writebyte(fd, bulbState);
-    usleep( 10 * 1000 );
+    usleep( 10 * 500 );
     
     serialport_read_until(fd, buf, 'H');
     //printf("read: %s\n",buf);
+    usleep(10*500);
     
 }
 
@@ -308,8 +314,8 @@ void calcAngles(int PX, int PY) {
     PVer= PVerN*(180/M_PI)+(verticalRange*180/M_PI);
     PHor= (angleRange*2)-PHorN*(180/M_PI)+(angleRange*180/M_PI);
         
-    cout<<PVer<<"\n";
-    cout<<PHor<<"\n";
+    cout<<PVer<<"Vert\n";
+    cout<<PHor<<"Horz\n";
     /*
      //experimental mapping approach
      //calculate PHor maxima
@@ -340,6 +346,7 @@ void calcAngles(int PX, int PY) {
 
 //function called on mouseEvent during mouseMode
 static void mouseXY( int event, int x, int y, int, void* ) {
+    bulbState=1;
     calcAngles(x, y);    
 }
 
@@ -356,7 +363,7 @@ bool mouseMode(){
         imshow(windowName, frame);
         char key = waitKey(10);
         switch (key) {
-            case 'q': case 'Q': return false;
+            case 'q': case 'Q': close(fd); return false;
         }
         updateDish();
     }
@@ -386,15 +393,16 @@ void cascadeDetect( Mat frame ) {
         if(center.x>iAPt1.x&&center.y>iAPt1.y&&center.x<iAPt2.x&&center.y<iAPt2.y &&!initTrack &&!tracking){
         
             look2sec++;
-            cout<<"look2sec"<<look2sec<<"\n";
+           // cout<<"look2sec"<<look2sec<<"\n";
             if(look2sec>50){
                 bulbState=1;
                 initTrack=true;
                 tracking=true;
-                calcAngles(center.x, center.y);
                 prevX=center.x;
                 prevY=center.y;
-                   
+                calcAngles(prevX, prevY);
+
+                
             }
         }
         //This is the change I made
@@ -405,21 +413,21 @@ void cascadeDetect( Mat frame ) {
         }
         
         if(tracking){
-            if(look10sec>200){
+            if(look10sec>400){
                 bulbState=0;
                 tracking=false;
                 initTrack=false;
                 look10sec=0;
             }
             else{
-                cout<<"look10sec"<<look10sec<<"\n";
+                //cout<<"look10sec"<<look10sec<<"\n";
                 bulbState=1;
                 look10sec++;
                 int distance = sqrt((pow((double)center.x-prevX, 2)+pow((double)center.y-prevY,2)));
                 if(distance<50){
                     prevX=center.x;
                     prevY=center.y;
-                    cout<<"I am tracking you \n";
+                   // cout<<"I am tracking you \n";
                     calcAngles(center.x, center.y);
                     ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
 
@@ -430,13 +438,13 @@ void cascadeDetect( Mat frame ) {
     
     if(upperBodies.size()==0){
         timer++;
-        cout<<"empty frame"<<timer<<"\n";
+       // cout<<"empty frame"<<timer<<"\n";
         if(timer>100){
             bulbState=0;
             tracking=false;
             initTrack=false;
             look2sec=0;
-            look10sec=0;
+            timer=0;
         }
     
     
@@ -450,7 +458,7 @@ int main(){
     if( !upperBody_cascade.load( upperBodyCascade ) ){ printf("--(!)Error loading\n"); return -1; }
     
     //set serial port
-    fd = serialport_init("/dev/tty.usbmodem1411", baudrate);
+    fd = serialport_init("/dev/tty.usbmodem241431", baudrate);
     
     //set initiation area
     windowName = "initArea";
@@ -458,6 +466,7 @@ int main(){
     setMouseCallback( windowName, onMouse, 0 );
     if (!setInitiationArea(windowName)) {
         cout << "Program canceled during initiatinAreaSet" << endl;
+        close(fd);
         return -1;
     }
     destroyWindow(windowName);
@@ -479,7 +488,7 @@ int main(){
         char key = cvWaitKey(10);
         
         switch (key) {
-            case 'q': case 'Q' : return -1;
+            case 'q': case 'Q' :close(fd); return -1;
         }
         updateDish();
     }
