@@ -346,7 +346,6 @@ void calcAngles(int PX, int PY) {
 
 //function called on mouseEvent during mouseMode
 static void mouseXY( int event, int x, int y, int, void* ) {
-    bulbState=1;
     calcAngles(x, y);    
 }
 
@@ -356,14 +355,15 @@ bool mouseMode(){
     windowName = "mouseMode";
     namedWindow(windowName, WINDOW_AUTOSIZE);
     setMouseCallback( windowName, mouseXY, 0 );
-    
+    bulbState=1;
+
     while (1) {
         
         cap>>frame;
         imshow(windowName, frame);
         char key = waitKey(10);
         switch (key) {
-            case 'q': case 'Q': close(fd); return false;
+            case 'q': case 'Q': bulbState=0; updateDish(); close(fd); return false;
         }
         updateDish();
     }
@@ -488,7 +488,7 @@ int main(){
         char key = cvWaitKey(10);
         
         switch (key) {
-            case 'q': case 'Q' :close(fd); return -1;
+            case 'q': case 'Q' :close(fd);  return -1;
         }
         updateDish();
     }
