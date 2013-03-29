@@ -28,8 +28,8 @@ using namespace cv;
 using namespace std;
 
 //properties for capture
-#define capWidth 480
-#define capHeight 360
+#define capWidth 640
+#define capHeight 480
 
 //current angles
 int PHor=30, PVer=0;
@@ -38,7 +38,7 @@ int PHor2, PVer2;
 //previousPositions
 int prevX,prevY;
 //mapping variables
-float angleRange=(M_PI/180)*30;
+float angleRange=(M_PI/180)*38;
 
 
 //variables for serial
@@ -51,13 +51,14 @@ bool handshake=false;
 
 // IR turn on / turn off
 
-int bulbState =0;
+int bulbState = 0;
 //initiate tracking
 bool initTrack = false;
 bool tracking=false;
 int look2sec=0;
 int look10sec=0;
 int timer =0;
+bool iSawYou=false;
 //setup variables for blobs and capture
 VideoCapture cap(1);
 Mat frame;
@@ -70,17 +71,19 @@ CvPoint iAPt2;
 //functions
 bool mouseMode();
 
+//transform matrix
+Mat keystone;
 
 //detection
 
 //paths to classifiers
 //Matthias:
-//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_fullbody.xml";
-//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_upperbody.xml";
+String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_fullbody.xml";
+//String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_lowerbody.xml";
 //String upperBodyCascade = "/usr/local/share/OpenCV/haarcascades/haarcascade_profileface.xml";
 
 //Cagri:
-String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
+//String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_fullbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_upperbody.xml";
 //String upperBodyCascade = "/Users/pinhan/Documents/MIT/IR Project/IRDishControl/haarcascade_profileface.xml";
 
@@ -90,6 +93,11 @@ CascadeClassifier upperBody_cascade;
 int initStatus = 0;
 bool settingArea = false;
 
+
+//keystone
+void antiKeystone(Mat input, Mat output) {
+    
+}
 
 
 //serialFunctions
@@ -212,12 +220,18 @@ static void onMouse( int event, int x, int y, int, void* ) {
 //draw initiation Area on video frame
 void drawInitArea(){}
 
+
+Mat undistFrame;
+
+
 //function to set area where blobs are looked for for further tracking
 bool setInitiationArea(string windowName) {
     while(1) {
         cap >> frame;
 		
-        if (initStatus == 1) rectangle(frame, iAPt1, iAPt2, Scalar(255,0,0)); //draw rectangle to preview initArea
+        warpPerspective(frame, undistFrame, keystone, Size(capWidth,capHeight));
+        
+        if (initStatus == 1) rectangle(undistFrame, iAPt1, iAPt2, Scalar(255,0,0)); //draw rectangle to preview initArea
         if (initStatus > 1) return true; //return after second point is set
 		
         char key = waitKey(10);
@@ -225,66 +239,95 @@ bool setInitiationArea(string windowName) {
             case 'q': case 'Q': return false;
             case 'm': case 'M': mouseMode(); return false;
         }
-        imshow(windowName, frame);
+        imshow(windowName, undistFrame);
     } //input of points for rectangular area
 }
 
 //function sends new angles to arduino
 void updateDish() {
+    /*
+     n = strtol("45", NULL,10); //convert string to number
+     
+     serialport_read_until(fd, buf, 'C');
+     // printf("read: %s\n",buf);
+     
+     usleep(10*1000);
+     
+     
+     serialport_read_until(fd, buf, 'G');
+     // printf("read: %s\n",buf);
+     usleep( 10 * 1000 );
+     
+     serialport_writebyte(fd, 200);
+     usleep( 10 * 1000 );
+     tcdrain(fd);
+     serialport_writebyte(fd, PVer);
+     usleep( 10 * 1000);
+     tcdrain(fd);
+     
+     serialport_read_until(fd, buf, 'G');
+     // printf("read: %s\n",buf);
+     
+     usleep( 10 * 1000);
+     
+     serialport_read_until(fd, buf, 'F');
+     //  printf("read: %s\n",buf);
+     usleep( 10 * 1000 );
+     
+     
+     serialport_writebyte(fd, 201);
+     tcdrain(fd);
+     
+     usleep( 10 * 1000 );
+     
+     //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
+     
+     serialport_writebyte(fd, PHor);
+     tcdrain(fd);
+     
+     usleep( 10 * 1000 );
+     
+     serialport_read_until(fd, buf, 'F');
+     //printf("read: %s\n",buf);
+     usleep( 10 * 1000 );
+     
+     serialport_read_until(fd, buf, 'H');
+     //printf("read: %s\n",buf);
+     usleep( 10 * 1000 );
+     
+     serialport_writebyte(fd, 202);
+     tcdrain(fd);
+     
+     usleep( 10 * 1000 );
+     
+     //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
+     
+     serialport_writebyte(fd, bulbState);
+     tcdrain(fd);
+     
+     usleep( 10 * 1000 );
+     
+     serialport_read_until(fd, buf, 'H');
+     //tcflush(<#int#>, <#int#>)
+     //printf("read: %s\n",buf);
+     
+     
+     // tcflush(fd, TCIOFLUSH);
+     
+     */
     
-    n = strtol("45", NULL,10); //convert string to number
-    
-    serialport_read_until(fd, buf, 'C');
-   // printf("read: %s\n",buf);
-    usleep(10*500);
-    
-    serialport_read_until(fd, buf, 'G');
-   // printf("read: %s\n",buf);
-    usleep( 10 * 500 );
-
     serialport_writebyte(fd, 200);
-    usleep( 10 * 500 );
-    
+    tcdrain(fd);
     serialport_writebyte(fd, PVer);
-    usleep( 10 * 500);
-    
-    serialport_read_until(fd, buf, 'G');
-   // printf("read: %s\n",buf);
-    
-    usleep( 10 * 500);
-
-    serialport_read_until(fd, buf, 'F');
-  //  printf("read: %s\n",buf);
-    usleep( 10 * 500 );
-
-    
-    serialport_writebyte(fd, 201);
-    usleep( 10 * 500 );
-    
-    //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
-    
+    tcdrain(fd);
     serialport_writebyte(fd, PHor);
-    usleep( 10 * 500 );
-    
-    serialport_read_until(fd, buf, 'F');
-    //printf("read: %s\n",buf);
-    usleep( 10 * 500 );
-
-    serialport_read_until(fd, buf, 'H');
-    //printf("read: %s\n",buf);
-    usleep( 10 * 500 );
-    
-    serialport_writebyte(fd, 202);
-    usleep( 10 * 500 );
-    
-    //cout << "serial PHor = " << PHor << " PVer = " << PVer << endl;
-    
+    tcdrain(fd);
     serialport_writebyte(fd, bulbState);
-    usleep( 10 * 500 );
+    tcdrain(fd);
+    serialport_writebyte(fd, 201);
+    tcdrain(fd);
     
-    serialport_read_until(fd, buf, 'H');
-    //printf("read: %s\n",buf);
-    usleep(10*500);
+    
     
 }
 
@@ -300,12 +343,12 @@ void calcAngles(int PX, int PY) {
     //PHor = int( (float)AHor - ((float)PX * (float)(AHor - BHor) / (float)capWidth) );
     
     //if(PVer>13){
-      //  PVer=PVer-13;
+    //  PVer=PVer-13;
     //}
     
     
     
-
+    
     float distance =(1/tan(angleRange))*(capWidth/2);
     
     float verticalRange= atan((capHeight/2)/distance);
@@ -313,7 +356,7 @@ void calcAngles(int PX, int PY) {
     float PVerN=atan((PY-(capHeight/2))/distance);
     PVer= PVerN*(180/M_PI)+(verticalRange*180/M_PI);
     PHor= (angleRange*2)-PHorN*(180/M_PI)+(angleRange*180/M_PI);
-        
+    
     cout<<PVer<<"Vert\n";
     cout<<PHor<<"Horz\n";
     /*
@@ -346,7 +389,7 @@ void calcAngles(int PX, int PY) {
 
 //function called on mouseEvent during mouseMode
 static void mouseXY( int event, int x, int y, int, void* ) {
-    calcAngles(x, y);    
+    calcAngles(x, y);
 }
 
 //function to use mouse to point dish
@@ -356,11 +399,12 @@ bool mouseMode(){
     namedWindow(windowName, WINDOW_AUTOSIZE);
     setMouseCallback( windowName, mouseXY, 0 );
     bulbState=1;
-
+    
     while (1) {
         
         cap>>frame;
-        imshow(windowName, frame);
+        warpPerspective(frame, undistFrame, keystone, Size(capWidth,capHeight));
+        imshow(windowName, undistFrame);
         char key = waitKey(10);
         switch (key) {
             case 'q': case 'Q': bulbState=0; updateDish(); close(fd); return false;
@@ -372,7 +416,7 @@ bool mouseMode(){
 //detects upper bodies and draws rectangles on frame to indicate them, takes in current video frame
 void cascadeDetect( Mat frame ) {
     //Compare look2sec and look10sec with global timer
-
+    
     std::vector<cv::Rect> upperBodies;
     Mat frame_gray;
     
@@ -380,8 +424,8 @@ void cascadeDetect( Mat frame ) {
     equalizeHist( frame_gray, frame_gray );
     
     //-- Detect upperBodies
-    upperBody_cascade.detectMultiScale( frame_gray, upperBodies, 1.1, 2, 0, cv::Size(80, 80) );
-
+    upperBody_cascade.detectMultiScale( frame_gray, upperBodies, 1.1, 2, 0, cv::Size(50, 50) );
+    
     
     // draw detections
     for( int i = 0; i < upperBodies.size(); i++ ){
@@ -391,9 +435,9 @@ void cascadeDetect( Mat frame ) {
         
         
         if(center.x>iAPt1.x&&center.y>iAPt1.y&&center.x<iAPt2.x&&center.y<iAPt2.y &&!initTrack &&!tracking){
-        
+            iSawYou=true;
             look2sec++;
-           // cout<<"look2sec"<<look2sec<<"\n";
+            // cout<<"look2sec"<<look2sec<<"\n";
             if(look2sec>50){
                 bulbState=1;
                 initTrack=true;
@@ -401,7 +445,7 @@ void cascadeDetect( Mat frame ) {
                 prevX=center.x;
                 prevY=center.y;
                 calcAngles(prevX, prevY);
-
+                
                 
             }
         }
@@ -409,15 +453,17 @@ void cascadeDetect( Mat frame ) {
         else{
             bulbState=0;
             initTrack=false;
-            look2sec=0;
+            //look2sec=0;
+            // calcAngles(0, 30);
         }
         
         if(tracking){
-            if(look10sec>400){
+            if(look10sec>700){
                 bulbState=0;
                 tracking=false;
                 initTrack=false;
                 look10sec=0;
+                //calcAngles(0, 30);
             }
             else{
                 //cout<<"look10sec"<<look10sec<<"\n";
@@ -427,39 +473,71 @@ void cascadeDetect( Mat frame ) {
                 if(distance<50){
                     prevX=center.x;
                     prevY=center.y;
-                   // cout<<"I am tracking you \n";
+                    // cout<<"I am tracking you \n";
                     calcAngles(center.x, center.y);
                     ellipse( frame, center, cv::Size( upperBodies[i].width*0.5, upperBodies[i].height*0.5), 0, 0, 360, Scalar( 255, 255, 0 ), 2, 8, 0 );
-
+                    
                 }
             }
         }
     }
     
+    if(iSawYou==false)
+        look2sec=0;
+    
+    iSawYou=false;
     if(upperBodies.size()==0){
         timer++;
-       // cout<<"empty frame"<<timer<<"\n";
+        // cout<<"empty frame"<<timer<<"\n";
         if(timer>100){
             bulbState=0;
             tracking=false;
             initTrack=false;
             look2sec=0;
             timer=0;
+            //calcAngles(0, 30);
         }
-    
-    
+        
+        
     }
 }
 
 int main(){
+    
     //settings for capture size
     cap.set(CV_CAP_PROP_FRAME_HEIGHT,capHeight);
     cap.set(CV_CAP_PROP_FRAME_WIDTH,capWidth);
+    cap.set(CV_CAP_PROP_CONTRAST,50);
+    
+    
+    //set keystone transform matrix
+    Point2f src[4], dst[4];
+    src[0].x = 0;
+    src[0].y = 0;
+    dst[0].x = capWidth*0.175;
+    dst[0].y = capHeight*0;
+    src[1].x = capWidth;
+    src[1].y = 0;
+    dst[1].x = capWidth*0.80;
+    dst[1].y = 0;
+    src[2].x = capWidth;
+    src[2].y = capHeight;
+    dst[2].x = capWidth;
+    dst[2].y = capHeight;
+    src[3].x = 0;
+    src[3].y = capHeight;
+    dst[3].x = capWidth*0;
+    dst[3].y = capHeight;
+    
+    keystone = getPerspectiveTransform(src, dst);
+    cap >> frame;
+    undistFrame.create(capWidth*0.85, capHeight, frame.type());
+    
     if( !upperBody_cascade.load( upperBodyCascade ) ){ printf("--(!)Error loading\n"); return -1; }
     
     //set serial port
-    fd = serialport_init("/dev/tty.usbmodem241431", baudrate);
-    
+    fd = serialport_init("/dev/tty.usbmodem241441", baudrate);
+    usleep(100000);
     //set initiation area
     windowName = "initArea";
     namedWindow(windowName, WINDOW_AUTOSIZE);
@@ -471,7 +549,7 @@ int main(){
     }
     destroyWindow(windowName);
     
-
+    
     //detect
     windowName = "detection";
     
@@ -481,9 +559,11 @@ int main(){
     while (1) {
         cap >> frame;
         
-        cascadeDetect(frame);
+        warpPerspective(frame, undistFrame, keystone, Size(capWidth,capHeight));
         
-        imshow(windowName, frame);
+        cascadeDetect(undistFrame);
+        
+        imshow(windowName, undistFrame);
         
         char key = cvWaitKey(10);
         
